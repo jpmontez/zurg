@@ -1,7 +1,15 @@
 zurg: v1
 token: ${ZURG_TOKEN}
 
+# Checking for changes in Real-Debrid API more frequently (every 10 seconds)
 check_for_changes_every_secs: 10
+
+# File handling and renaming settings
+retain_rd_torrent_name: false
+retain_folder_name_extension: false
+expose_full_path: true
+
+# Torrent management settings
 enable_repair: true
 auto_delete_rar_torrents: true
 
