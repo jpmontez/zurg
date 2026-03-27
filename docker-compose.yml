@@ -7,9 +7,11 @@ services:
       - "9999:9999"
     volumes:
       - ./config.yml:/app/config.yml
+      - ./entrypoint.sh:/entrypoint.sh
       - zurgdata:/app/data
     environment:
       - ZURG_TOKEN=${RD_TOKEN}
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
 
 volumes:
   zurgdata:
