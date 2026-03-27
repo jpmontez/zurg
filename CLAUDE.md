@@ -17,7 +17,7 @@ No rclone. No FUSE. WebDAV is accessed directly by media apps or mounted as a ne
 
 1. Copy `.env.example` to `.env` and add your Real-Debrid token: `RD_TOKEN=yourtoken`
 2. `docker compose up -d`
-3. Verify: `curl -I http://localhost:9999/dav` — expect HTTP 200 or 207
+3. Verify: `curl -X PROPFIND http://localhost:9999/dav/ -H "Depth: 0" -s -o /dev/null -w "%{http_code}"` — expect `207`
 
 ## Common Commands
 
@@ -42,7 +42,8 @@ docker compose down
 | File | Purpose |
 |------|---------|
 | `config.yml` | Zurg config — token via `${ZURG_TOKEN}`, directory filters, polling interval |
-| `docker-compose.yml` | Single zurg service, injects `ZURG_TOKEN` from `.env` |
+| `docker-compose.yml` | Single zurg service, injects `ZURG_TOKEN` from `.env`, uses custom entrypoint |
+| `entrypoint.sh` | Substitutes `${ZURG_TOKEN}` in config.yml via `sed` before starting zurg |
 | `.env` | Gitignored — holds `RD_TOKEN=yourtoken` |
 | `.env.example` | Checked-in template with empty `RD_TOKEN=` |
 | `docs/config-v0.9.md` | Full config reference (local copy of upstream wiki) |
@@ -50,7 +51,7 @@ docker compose down
 
 ## Secret Handling
 
-The Real-Debrid token lives only in `.env` (gitignored). `config.yml` reads it as `${ZURG_TOKEN}` — zurg interpolates this from its container environment at startup. Never hardcode the token in `config.yml`.
+The Real-Debrid token lives only in `.env` (gitignored). Docker Compose injects it as `ZURG_TOKEN` into the container. `entrypoint.sh` runs `sed` to substitute `${ZURG_TOKEN}` in `config.yml` before zurg starts — zurg itself does not support env var expansion in its config. Never hardcode the token in `config.yml`.
 
 ## Network Access
 

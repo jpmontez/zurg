@@ -17,9 +17,9 @@ Self-hosted [Real-Debrid](https://real-debrid.com) WebDAV server, running as a s
 
 3. Verify it's running:
    ```bash
-   curl -I http://localhost:9999/dav
+   curl -X PROPFIND http://localhost:9999/dav/ -H "Depth: 0" -s -o /dev/null -w "%{http_code}"
    ```
-   Expected: `HTTP/1.1 200 OK` or `207 Multi-Status`
+   Expected: `207`
 
 ## Accessing Your Library
 
