@@ -1,6 +1,6 @@
 services:
   zurg:
-    image: ghcr.io/debridmediamanager/zurg-testing:latest
+    image: ghcr.io/debridmediamanager/zurg-testing:v1.0.0
     container_name: zurg
     restart: unless-stopped
     ports:

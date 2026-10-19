@@ -11,7 +11,6 @@ expose_full_path: true
 
 # Torrent management settings
 enable_repair: true
-auto_delete_rar_torrents: true
 
 directories:
   anime:

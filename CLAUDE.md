@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repository Is
 
-A deployment configuration repository for **Zurg**, a self-hosted Real-Debrid WebDAV server. This repo contains no Go source code — the upstream binary is pulled via the Docker image `ghcr.io/debridmediamanager/zurg-testing`.
+A deployment configuration repository for **Zurg**, a self-hosted Real-Debrid WebDAV server. This repo contains no Go source code — the upstream binary is pulled via the Docker image `ghcr.io/debridmediamanager/zurg-testing`, pinned to `v1.0.0` in `docker-compose.yml`. (The image keeps the `zurg-testing` name even though the upstream repo is now `zurg-public`.)
 
 **Architecture:**
 ```

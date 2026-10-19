@@ -42,4 +42,4 @@ docker compose restart zurg
 
 ## Upstream
 
-Binary: [debridmediamanager/zurg-testing](https://github.com/debridmediamanager/zurg-testing)
+Binary: [debridmediamanager/zurg-public](https://github.com/debridmediamanager/zurg-public)
